@@ -144,7 +144,7 @@ fun DetailView(
         }
     }
 }
-
+// fungsi untuk detail row
 @Composable
 fun DetailRow(label: String, value: String) {
     Column(
