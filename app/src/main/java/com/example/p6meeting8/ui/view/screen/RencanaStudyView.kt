@@ -107,7 +107,64 @@ fun RencanaStudyView(
                 )
                 .fillMaxSize()
         ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ){
+                Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
+                Text(text = "Silahkan Pilih Mata Kuliah Yang Anda Inginkan",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light
+                )
+                Spacer(modifier = Modifier.padding(start = 8.dp))
+                DynamicSelectTextField(
+                    selectedValue = choseDropdown,
+                    options = MataKuliah.options,
+                    label = "Mata Kuliah",
+                    onValueChangeEvent = {
+                        choseDropdown = it
+                    }
+                )
+                Spacer(modifier = Modifier.padding(start = 8.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.padding(start = 8.dp))
+                Text(text = "Pilih kelas Belajar", fontWeight = FontWeight.Bold)
+                Text(text = "Silahkan pilih Kelas Dari mata kuliah yang anda inginkan",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light
+                )
+                Spacer(modifier = Modifier.padding(start = 8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ){
+                    RuangKelas.kelas.forEach { data ->
+                        Row(verticalAlignment = Alignment.CenterVertically){
+                            RadioButton(
+                                selected = pilihanKelas == data,
+                                onClick = {pilihanKelas = data}
+                            )
+                            Text(data)
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.padding(start = 8.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.padding(start = 8.dp))
+                Text(text = "Klausul Persetujuan Mahasiswa", fontWeight = FontWeight.Bold)
+                Row(verticalAlignment = Alignment.CenterVertically){
+                    Checkbox(
+                        checked = checked,
+                        onCheckedChange = {checked = it},
+                        enabled = choseDropdown.isNotBlank() && pilihanKelas.isNotBlank()
+                    )
+                    Text(text = "Saya menyetujui setiap pernyataan yang ada tanpa paksaan dari pihak manapun.",
+                        fontWeight = FontWeight.Light, fontSize = 10.sp
+                    )
+                }
 
+            }
         }
     }
 }
