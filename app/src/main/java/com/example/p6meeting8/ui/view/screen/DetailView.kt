@@ -93,7 +93,53 @@ fun DetailView(
                         )
                         .padding(16.dp)
                 ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        // Judul "Detail Mahasiswa"
+                        Text(
+                            "Detail Mahasiswa",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
 
+                        // Detail Mahasiswa
+                        DetailRow(label = "Nama :", value = mahasiswa.nama)
+                        DetailRow(label = "NIM :", value = mahasiswa.nim)
+                        DetailRow(label = "Email :", value = mahasiswa.email)
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        // Judul "Rencana Studi"
+                        Text(
+                            "Rencana Studi",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+
+                        // Detail Rencana Studi
+                        DetailRow(label = "Mata Kuliah :", value = rencanaStudi.mataKuliah)
+                        DetailRow(label = "Kelas :", value = rencanaStudi.kelas)
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(onClick = onBackButtonClicked) {
+                        Text("Kembali")
+                    }
+                    Button(onClick = onResetButtonClicked) {
+                        Text("Reset")
+                    }
+                }
             }
         }
     }
